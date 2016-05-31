@@ -602,6 +602,35 @@
          </item>
         </layout>
        </widget>
+       <widget class="QWidget" name="layoutWidget_24">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>148</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_27">
+         <item>
+          <widget class="QRadioButton" name="radioButton_82">
+           <property name="text">
+            <string>Left Shift</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_83">
+           <property name="text">
+            <string>Right Shift</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
       <widget class="QWidget" name="page_3">
        <widget class="QWidget" name="layoutWidget_2">

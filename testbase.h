@@ -6,6 +6,8 @@
 #include "grapichsItems.h"
 #include <QMap>
 
+typedef unsigned short ushort;
+
 namespace Ui {
     class TestBase;
 }
@@ -24,7 +26,12 @@ public:
     //template<class T> std::map<T, int> colors;
 
 protected:
+
+    enum Stimulus { figure, word, color, mix };
+
     bool exists;
+    QGraphicsItem *stimulusType;
+    Stimulus stimul;
 
     QGraphicsScene *scene;
     MyEllipse *ellipse;

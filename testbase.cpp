@@ -11,7 +11,11 @@ TestBase::TestBase(QWidget *parent) :
     ui->setupUi(this);
     ui->graphicsView->setPalette(Qt::black);
 
+    stimul = figures;
+
+    //this is for scene state - to show stimul or not to show
     exists = false;
+
     scene = new QGraphicsScene(this);
     ellipse = new MyEllipse;
     triangle = new MyTriangle;
