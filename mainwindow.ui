@@ -176,14 +176,14 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <widget class="QRadioButton" name="radioButton_11">
+          <widget class="QRadioButton" name="rbPzmrLeftShift">
            <property name="text">
             <string>Left Shift</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_12">
+          <widget class="QRadioButton" name="rbPzmrRightShift">
            <property name="text">
             <string>Right Shift</string>
            </property>
@@ -253,7 +253,7 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QRadioButton" name="radioButton_9">
+          <widget class="QRadioButton" name="rbFigures">
            <property name="text">
             <string>Фигуры</string>
            </property>
@@ -263,21 +263,21 @@
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_8">
+          <widget class="QRadioButton" name="rbWords">
            <property name="text">
             <string>Слова</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_5">
+          <widget class="QRadioButton" name="rbColors">
            <property name="text">
             <string>Цвета</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_10">
+          <widget class="QRadioButton" name="rbCombo">
            <property name="text">
             <string>Комбинация</string>
            </property>
@@ -296,7 +296,7 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QRadioButton" name="radioButton_3">
+          <widget class="QRadioButton" name="rbPzmr30">
            <property name="text">
             <string>30</string>
            </property>
@@ -306,7 +306,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_4">
+          <widget class="QRadioButton" name="rbPzmr50">
            <property name="text">
             <string>50</string>
            </property>
@@ -325,7 +325,7 @@
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QRadioButton" name="radioButton_7">
+          <widget class="QRadioButton" name="rbPzmr700">
            <property name="text">
             <string>700</string>
            </property>
@@ -335,7 +335,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_6">
+          <widget class="QRadioButton" name="rbPzmr900">
            <property name="text">
             <string>900</string>
            </property>

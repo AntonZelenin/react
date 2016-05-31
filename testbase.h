@@ -5,6 +5,7 @@
 #include <QtGui>
 #include "grapichsItems.h"
 #include <QMap>
+#include "ui_testbase.h"
 
 typedef unsigned short ushort;
 
@@ -21,13 +22,13 @@ public:
     ~TestBase();
     bool isExists() { return exists; }
 
-    QMap<int, QGraphicsItem*> figures;
-    QMap<int, QString> words;
+    QMap<int, QGraphicsItem*> figuresMap;
+    QMap<int, QString> wordsMap;
     //template<class T> std::map<T, int> colors;
 
 protected:
 
-    enum Stimulus { figure, word, color, mix };
+    enum Stimulus { figures, words, colors, combo };
 
     bool exists;
     QGraphicsItem *stimulusType;
@@ -40,10 +41,20 @@ protected:
 
     void changeEvent(QEvent *e);
     template<class T> void blinc(T );
-    virtual void timerEvent(QTimerEvent *);
 
-private:
     Ui::TestBase *ui;
 };
+
+template<class T>
+void TestBase::blinc(T stimul)
+{
+    static T prev = NULL;
+    scene->removeItem(prev);
+
+    scene->addItem(stimul);
+    exists ? ui->graphicsView->setScene(scene) : ui->graphicsView->setScene(NULL);
+
+    prev = stimul;
+}
 
 #endif // TESTBASE_H

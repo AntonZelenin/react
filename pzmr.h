@@ -4,6 +4,7 @@
 
 class PZMR : public TestBase
 {
+
 public:
     PZMR();
     ushort getExpo() { return exposition; }
@@ -17,6 +18,7 @@ protected:
     ushort signalsAmount;
     ushort exposition;
 
+    virtual void timerEvent(QTimerEvent *ev);
 };
 
 #endif // PZMR_H

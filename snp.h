@@ -15,6 +15,8 @@ public:
 protected:
     ushort exposition;
     ushort duration;
+
+    virtual void timerEvent(QTimerEvent *) {}
 };
 
 #endif // SNP_H
