@@ -4,24 +4,37 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QDebug>   //might not be neseccery
+#include <QObject>
+#include <QMap>
+#include <ctime>
 
-class MySquare : public QGraphicsItem
+const short WIDTH = 5;
+
+class BaseFigure : public QObject, public QGraphicsItem
 {
+    Q_OBJECT
+
 public:
     QPen *pen;
 
-    MySquare()
+    BaseFigure()
     {
         pen = new QPen(Qt::red);
-        pen->setWidth(5);
+        pen->setWidth(WIDTH);
     }
 
-    QRectF boundingRect() const
+public slots:
+    void setColor(Qt::GlobalColor col) { pen->setColor(col); }
+};
+
+class MySquare : public BaseFigure
+{
+    virtual QRectF boundingRect() const
     {
-        return QRectF(100, 100, 200, 200);
+        return QRectF(0, 0, 200, 200);
     }
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
     {
         QRectF rec = boundingRect();
 
@@ -31,41 +44,25 @@ public:
     }
 };
 
-class MyEllipse: public QGraphicsItem
+class MyEllipse: public MySquare
 {
 public:
-    QPen *pen;
-
-    MyEllipse()
-    {
-        pen = new QPen(Qt::red);
-        pen->setWidth(5);
-    }
-
     QRectF boundingRect() const
     {
-        return QRectF(50, 50, 200, 200);
+        return QRectF(/*50, 50, 200, 200*/);
     }
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
     {
         painter->setPen(*pen);
 
-        painter->drawEllipse(QPoint(-50, -50), 100, 100);
+        painter->drawEllipse(boundingRect().center(), 100, 100);
     }
 };
 
-class MyTriangle: public QGraphicsItem
+class MyTriangle: public MySquare
 {
 public:
-    QPen *pen;
-
-    MyTriangle()
-    {
-        pen = new QPen(Qt::red);
-        pen->setWidth(5);
-    }
-
     QRectF boundingRect() const
     {
         return QRectF(-100, -100, 200, 200);
@@ -79,6 +76,47 @@ public:
         painter->setPen(*pen);
 
         painter->drawPolygon(polygon);
+    }
+};
+
+class ColorRect : public QGraphicsRectItem
+{
+    QBrush *brush;
+
+    QMap<int, Qt::GlobalColor> colorMap;
+
+public:
+    ColorRect()
+    {
+        brush = new QBrush(Qt::red);
+
+        colorMap.insert(1, Qt::red);
+        colorMap.insert(2, Qt::blue);
+        colorMap.insert(3, Qt::green);
+    }
+
+    ColorRect* setCol()
+    {
+        srand(time(NULL));
+        QMap<int, Qt::GlobalColor>::iterator it = colorMap.find(rand() % 3 + 1);
+        brush->setColor(it.value());
+        //brush->setColor(Qt::green);
+
+        return this;
+    }
+
+    virtual QRectF boundingRect() const
+    {
+        return QRectF(0, 0, 200, 200);
+    }
+
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+    {
+        QRectF rec = boundingRect();
+
+        painter->setBrush(*brush);
+
+        painter->drawRect(rec);
     }
 };
 

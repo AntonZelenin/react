@@ -7,11 +7,10 @@ class PZMR : public TestBase
 
 public:
     PZMR();
-    ushort getExpo() { return exposition; }
-    ushort getSignalsAmount() { return signalsAmount; } const
+    ushort getExpo() const { return exposition; }
+    ushort getSignalsAmount() const { return signalsAmount; }
 
-    //why I can't make it const??
-    bool isRightShift() { return isRightSh; }
+    bool isRightShift() const { return isRightSh; }
 
 protected:
     bool isRightSh;

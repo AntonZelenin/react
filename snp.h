@@ -8,8 +8,7 @@ class SNP : public TestBase
 public:
     SNP();
 
-    //вот это прикооол, да?? нельзя сделать последний метод со словом конст в конце, простите за русские комменты
-    ushort getExpo() { return exposition; } const
+    ushort getExpo() const { return exposition; }
     ushort getDuration() const { return duration; }
 
 protected:

@@ -19,11 +19,40 @@ void PZMR::timerEvent(QTimerEvent *ev)
     //because we have 3 kimds of stimuls
     ushort randStimul = rand() % 3 + 1;
 
-    QMap<int, QGraphicsItem*>::iterator it = figuresMap.find(randStimul);
-    blinc(it.value());
+    static QMap<int, QGraphicsItem*>::iterator it;
+
+    switch(stimul)
+    {
+    case figures:
+        {
+            it = figuresMap.find(randStimul);
+            blinc(it.value());
+        }
+        break;
+    case words:
+        {
+
+        }
+        break;
+    case colors:
+        {
+            //emit changeColor(colorsMap.find(rand() % 3 + 1).value());
+            //colRect->setCol();
+            blinc(colRect->setCol());
+        }
+        break;
+    case combo:
+        {
+
+        }
+        break;
+    }
 
     if(isExists())
+    {
         this->startTimer(this->exposition);
-    else
+        --signalsAmount;
+    }
+    else if (signalsAmount)
         this->startTimer(rand() % 1000 + 1000);
 }

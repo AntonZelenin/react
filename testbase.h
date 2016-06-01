@@ -24,37 +24,41 @@ public:
 
     QMap<int, QGraphicsItem*> figuresMap;
     QMap<int, QString> wordsMap;
-    //template<class T> std::map<T, int> colors;
 
 protected:
 
-    enum Stimulus { figures, words, colors, combo };
+    enum STIMULUS { figures, words, colors, combo };
 
     bool exists;
     QGraphicsItem *stimulusType;
-    Stimulus stimul;
+    STIMULUS stimul;
 
+    //Graphics items for scene
     QGraphicsScene *scene;
     MyEllipse *ellipse;
     MyTriangle *triangle;
     MySquare *square;
+    ColorRect *colRect;
 
     void changeEvent(QEvent *e);
     template<class T> void blinc(T );
 
     Ui::TestBase *ui;
+
+signals:
+    void changeColor(Qt::GlobalColor col);
 };
 
 template<class T>
-void TestBase::blinc(T stimul)
+void TestBase::blinc(T signal)
 {
     static T prev = NULL;
     scene->removeItem(prev);
 
-    scene->addItem(stimul);
+    scene->addItem(signal);
     exists ? ui->graphicsView->setScene(scene) : ui->graphicsView->setScene(NULL);
 
-    prev = stimul;
+    prev = signal;
 }
 
 #endif // TESTBASE_H

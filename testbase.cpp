@@ -11,7 +11,7 @@ TestBase::TestBase(QWidget *parent) :
     ui->setupUi(this);
     ui->graphicsView->setPalette(Qt::black);
 
-    stimul = figures;
+    stimul = colors;
 
     //this is for scene state - to show stimul or not to show
     exists = false;
@@ -20,6 +20,11 @@ TestBase::TestBase(QWidget *parent) :
     ellipse = new MyEllipse;
     triangle = new MyTriangle;
     square = new MySquare;
+    colRect = new ColorRect;
+
+    QObject::connect(this, SIGNAL(changeColor(Qt::GlobalColor)), this->ellipse, SLOT(setColor(Qt::GlobalColor)));
+    QObject::connect(this, SIGNAL(changeColor(Qt::GlobalColor)), this->square, SLOT(setColor(Qt::GlobalColor)));
+    QObject::connect(this, SIGNAL(changeColor(Qt::GlobalColor)), triangle, SLOT(setColor(Qt::GlobalColor)));
 
     figuresMap.insert(1, square);
     figuresMap.insert(2, ellipse);
@@ -29,9 +34,9 @@ TestBase::TestBase(QWidget *parent) :
 //    words.insert(std::make_pair("death", 2));
 //    words.insert(std::make_pair("time", 3));
 
-//    colors.insert(std::make_pair(ellipse, 1));
-//    colors.insert(std::make_pair(ellipse, 1));
-//    colors.insert(std::make_pair(ellipse, 1));
+//    colorsMap.insert(1, Qt::red);
+//    colorsMap.insert(2, Qt::blue);
+//    colorsMap.insert(3, Qt::green);
 }
 
 TestBase::~TestBase()
