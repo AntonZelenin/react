@@ -23,8 +23,8 @@ public:
         pen->setWidth(WIDTH);
     }
 
-public slots:
-    void setColor(Qt::GlobalColor col) { pen->setColor(col); }
+//public slots:
+    //void setColor(Qt::GlobalColor col) { pen->setColor(col); }
 };
 
 class MySquare : public BaseFigure
@@ -97,10 +97,8 @@ public:
 
     ColorRect* setCol()
     {
-        srand(time(NULL));
         QMap<int, Qt::GlobalColor>::iterator it = colorMap.find(rand() % 3 + 1);
         brush->setColor(it.value());
-        //brush->setColor(Qt::green);
 
         return this;
     }
@@ -115,7 +113,6 @@ public:
         QRectF rec = boundingRect();
 
         painter->setBrush(*brush);
-
         painter->drawRect(rec);
     }
 };

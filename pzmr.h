@@ -7,14 +7,13 @@ class PZMR : public TestBase
 
 public:
     PZMR();
+    void setExpo(short val) { exposition = val; }
     ushort getExpo() const { return exposition; }
-    ushort getSignalsAmount() const { return signalsAmount; }
 
     bool isRightShift() const { return isRightSh; }
 
 protected:
     bool isRightSh;
-    ushort signalsAmount;
     ushort exposition;
 
     virtual void timerEvent(QTimerEvent *ev);

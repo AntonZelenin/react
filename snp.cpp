@@ -3,5 +3,5 @@
 SNP::SNP()
 {
     exposition = 900;
-    duration = 2;
+    duration = 120; //because diration is 2 minutes
 }

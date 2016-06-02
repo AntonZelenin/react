@@ -3,6 +3,7 @@
 #include <utility>
 #include<ctime>
 #include "grapichsItems.h"
+#include <QKeyEvent>
 
 TestBase::TestBase(QWidget *parent) :
     QDialog(parent),
@@ -10,8 +11,6 @@ TestBase::TestBase(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->graphicsView->setPalette(Qt::black);
-
-    stimul = colors;
 
     //this is for scene state - to show stimul or not to show
     exists = false;
@@ -21,22 +20,15 @@ TestBase::TestBase(QWidget *parent) :
     triangle = new MyTriangle;
     square = new MySquare;
     colRect = new ColorRect;
-
-    QObject::connect(this, SIGNAL(changeColor(Qt::GlobalColor)), this->ellipse, SLOT(setColor(Qt::GlobalColor)));
-    QObject::connect(this, SIGNAL(changeColor(Qt::GlobalColor)), this->square, SLOT(setColor(Qt::GlobalColor)));
-    QObject::connect(this, SIGNAL(changeColor(Qt::GlobalColor)), triangle, SLOT(setColor(Qt::GlobalColor)));
+    wordsStimul = new QGraphicsTextItem;
 
     figuresMap.insert(1, square);
     figuresMap.insert(2, ellipse);
     figuresMap.insert(3, triangle);
 
-//    words.insert(std::make_pair("diploma", 1));
-//    words.insert(std::make_pair("death", 2));
-//    words.insert(std::make_pair("time", 3));
-
-//    colorsMap.insert(1, Qt::red);
-//    colorsMap.insert(2, Qt::blue);
-//    colorsMap.insert(3, Qt::green);
+    wordsMap.insert(1, "diploma");
+    wordsMap.insert(2, "death");
+    wordsMap.insert(3, "lack of time");
 }
 
 TestBase::~TestBase()
@@ -44,6 +36,24 @@ TestBase::~TestBase()
     delete ui;
 }
 
+void TestBase::setStimul (short val)
+{
+    switch(val)
+    {
+    case 1:
+        this->stimul = figures;
+        break;
+    case 2:
+        this->stimul = words;
+        break;
+    case 3:
+        this->stimul = colors;
+        break;
+    case 4:
+        this->stimul = combo;
+        break;
+    }
+}
 
 void TestBase::changeEvent(QEvent *e)
 {
